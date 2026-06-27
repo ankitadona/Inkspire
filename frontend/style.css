@@ -1,0 +1,882 @@
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:"Comic Sans MS","Comic Sans",cursive;
+background:#efe1cc;
+background-image:
+linear-gradient(rgba(120,80,45,0.07) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+background-size:100% 34px, auto;
+color:#4b3b2a;
+transition:0.35s ease;
+overflow-x:hidden;
+}
+
+button,
+input,
+textarea,
+select{
+font-family:"Comic Sans MS","Comic Sans",cursive;
+}
+
+button{
+border:none;
+border-radius:12px;
+background:#4b3b2a;
+color:white;
+padding:10px 14px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+input,
+textarea,
+select{
+width:100%;
+margin-top:12px;
+padding:14px;
+border:none;
+border-radius:14px;
+background:#fff8ef;
+outline:none;
+font-size:15px;
+color:#4b3b2a;
+box-shadow:inset 0 2px 5px rgba(0,0,0,0.05);
+}
+
+textarea{
+min-height:120px;
+resize:none;
+line-height:1.6;
+background-image:linear-gradient(rgba(120,80,45,0.12) 1px, transparent 1px);
+background-size:100% 28px;
+}
+
+input[type="datetime-local"]{
+height:52px;
+}
+
+.auth-body{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.auth-card{
+background:#fffaf1;
+padding:30px;
+border-radius:22px;
+width:320px;
+box-shadow:0 12px 24px rgba(78,50,28,0.14);
+text-align:center;
+animation:fadeIn 0.6s ease;
+}
+
+.title,
+.logo{
+font-family:"Comic Sans MS","Comic Sans",cursive;
+color:#4b3b2a;
+margin:0;
+}
+
+.subtitle,
+.tagline{
+font-family:"Comic Sans MS","Comic Sans",cursive;
+color:#7a5c45;
+}
+
+.btns{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.dashboard{
+min-height:100vh;
+}
+
+.topbar{
+text-align:center;
+padding:28px 20px 12px;
+position:relative;
+z-index:5;
+}
+
+.logo{
+font-size:2.8rem;
+}
+
+.tagline{
+font-size:1.35rem;
+margin:6px 0 0;
+}
+
+.notebook{
+width:700px;
+max-width:calc(100% - 40px);
+display:flex;
+flex-direction:column;
+gap:30px;
+margin:20px auto;
+position:relative;
+z-index:2;
+}
+
+.menu-btn{
+position:fixed;
+top:22px;
+left:22px;
+width:48px;
+height:48px;
+border-radius:16px;
+background:#fff8ef;
+color:#4b3b2a;
+font-size:24px;
+font-weight:700;
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+z-index:1001;
+padding:0;
+}
+
+.menu-btn:hover{
+background:#f4e7d7;
+transform:translateY(-2px);
+}
+
+.sidebar{
+position:fixed;
+top:0;
+left:-310px;
+width:300px;
+height:100vh;
+background:#fffaf1;
+background-image:
+linear-gradient(rgba(150,100,60,0.10) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+background-size:100% 30px, auto;
+box-shadow:12px 0 25px rgba(0,0,0,0.16);
+padding:28px 20px;
+z-index:1002;
+transition:0.35s ease;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+}
+
+.show-sidebar{
+left:0;
+}
+
+.sidebar h2{
+margin:0 0 20px;
+font-size:1.8rem;
+color:#4b3b2a;
+}
+
+.menu-section-btn{
+width:100%;
+background:#f5eadb;
+color:#4b3b2a;
+font-size:15px;
+font-weight:700;
+text-align:left;
+margin-top:12px;
+box-shadow:none;
+}
+
+.menu-section-btn:hover{
+background:#ead8c3;
+transform:none;
+}
+
+.menu-list{
+display:none;
+padding:8px 0 0;
+}
+
+.show-menu-list{
+display:block;
+}
+
+.menu-note-item{
+width:100%;
+background:#fff8ef;
+color:#4b3b2a;
+box-shadow:none;
+text-align:left;
+padding:12px 10px;
+border-radius:12px;
+margin-top:8px;
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+.menu-note-item:hover{
+background:#f5eadb;
+transform:none;
+}
+
+.menu-note-item strong{
+font-size:14px;
+}
+
+.menu-note-item small,
+.menu-empty{
+font-size:12px;
+color:#7a5c45;
+}
+
+.menu-empty{
+margin:8px;
+}
+
+.sidebar-logout{
+width:100%;
+background:#4b3b2a;
+color:#fff;
+font-weight:700;
+}
+
+.overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.35);
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+z-index:1000;
+}
+
+.show-overlay{
+opacity:1;
+pointer-events:auto;
+}
+
+.card,
+.summary-card{
+background:#fffaf1;
+background-image:
+linear-gradient(rgba(150,100,60,0.10) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+background-size:100% 30px, auto;
+padding:30px 25px 25px;
+border-radius:22px;
+box-shadow:0 12px 24px rgba(78,50,28,0.14);
+border:1px solid rgba(120,80,45,0.10);
+}
+
+.card h2,
+.summary-card h2{
+font-size:2rem;
+font-weight:600;
+color:#3f3023;
+margin:0 0 20px;
+}
+
+.summary-card h2{
+font-size:1.45rem;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:11px 0;
+border-bottom:1px dashed rgba(75,59,42,0.25);
+font-size:15px;
+}
+
+.summary-row:last-child{
+border-bottom:none;
+}
+
+.summary-row strong{
+background:#f5eadb;
+padding:5px 14px;
+border-radius:999px;
+color:#4b3b2a;
+}
+
+.mode-toggle{
+width:210px;
+height:52px;
+border-radius:40px;
+background:#eee7dc;
+color:#111;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:6px;
+margin:16px auto 0;
+font-weight:800;
+letter-spacing:1px;
+box-shadow:0 6px 18px rgba(0,0,0,0.14);
+position:relative;
+overflow:hidden;
+}
+
+.mode-icon{
+width:42px;
+height:42px;
+border-radius:50%;
+background:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+transition:0.4s ease;
+position:absolute;
+left:6px;
+top:5px;
+z-index:2;
+}
+
+.mode-label{
+font-size:14px;
+transition:0.4s ease;
+width:100%;
+text-align:center;
+padding-left:38px;
+}
+
+.search-card{
+position:relative;
+}
+
+.suggestions{
+display:none;
+margin-top:12px;
+background:#fff8ef;
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,0.10);
+overflow:hidden;
+}
+
+.suggestion-item{
+width:100%;
+background:transparent;
+color:#4b3b2a;
+box-shadow:none;
+text-align:left;
+border-radius:0;
+padding:12px 14px;
+display:flex;
+flex-direction:column;
+gap:4px;
+border-bottom:1px solid rgba(120,80,45,0.12);
+}
+
+.suggestion-item:hover{
+background:#f5eadb;
+transform:none;
+}
+
+.suggestion-item strong{
+font-size:15px;
+}
+
+.suggestion-item small,
+.suggestion-empty{
+font-size:12px;
+color:#7a5c45;
+}
+
+.suggestion-empty{
+padding:12px 14px;
+margin:0;
+}
+
+.color-options{
+display:flex;
+gap:10px;
+margin-top:14px;
+margin-bottom:6px;
+}
+
+.color-btn{
+width:30px;
+height:30px;
+border-radius:50%;
+border:2px solid white;
+box-shadow:0 4px 10px rgba(0,0,0,0.18);
+padding:0;
+margin-top:0;
+}
+
+.yellow{background:#fff6c7;}
+.pink{background:#ffd6e8;}
+.blue{background:#d6ecff;}
+.green{background:#dcffd6;}
+.purple{background:#eadcff;}
+
+.color-btn.active{
+border:3px solid #4b3b2a;
+}
+
+#saveNoteBtn,
+#addTaskBtn{
+display:block;
+width:auto;
+min-width:150px;
+margin:18px 0 0 auto;
+}
+
+#taskContainer{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:14px;
+}
+
+.saved-note{
+background:#fffaf4;
+padding:15px;
+border-radius:16px;
+box-shadow:0 5px 14px rgba(0,0,0,0.10);
+color:#4b3b2a;
+border:1px solid rgba(120,80,45,0.08);
+}
+
+.saved-note h3{
+margin:0 0 8px;
+color:#4b3b2a;
+padding-right:38px;
+}
+
+.saved-note p{
+margin:10px 0;
+line-height:1.5;
+}
+
+.saved-note button{
+width:auto;
+margin-right:8px;
+margin-top:10px;
+padding:8px 12px;
+font-size:13px;
+}
+
+.note-date{
+display:block;
+font-size:12px;
+color:#7a5c45;
+margin-bottom:8px;
+}
+
+.category-badge{
+display:inline-block;
+background:#f7e4c8;
+color:#4b3b2a;
+padding:6px 10px;
+border-radius:20px;
+font-size:13px;
+margin:8px 0;
+}
+
+.task-item input[type="checkbox"]{
+width:auto;
+margin-right:10px;
+}
+
+.task-item span{
+font-size:15px;
+}
+
+.task-item small{
+display:block;
+margin-top:8px;
+color:#7a5c45;
+}
+
+.empty-message{
+color:#7a5c45;
+font-size:14px;
+margin:0;
+}
+
+.note-modal{
+position:fixed;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+pointer-events:none;
+z-index:1003;
+transition:0.3s;
+padding:20px;
+}
+
+.show-modal{
+opacity:1;
+pointer-events:auto;
+}
+
+.modal-card{
+width:560px;
+max-width:100%;
+max-height:85vh;
+overflow:auto;
+position:relative;
+background:#fffaf1;
+background-image:
+linear-gradient(rgba(150,100,60,0.10) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+background-size:100% 30px, auto;
+padding:34px 26px 24px;
+border-radius:24px;
+box-shadow:0 20px 40px rgba(0,0,0,0.25);
+color:#4b3b2a;
+}
+
+.modal-actions-top{
+position:absolute;
+top:12px;
+right:14px;
+display:flex;
+gap:8px;
+}
+
+.modal-heart,
+.modal-close{
+background:transparent;
+color:#4b3b2a;
+box-shadow:none;
+font-size:22px;
+padding:0 4px;
+margin:0;
+}
+
+.modal-close{
+font-size:28px;
+line-height:1;
+}
+
+.modal-heart:hover,
+.modal-close:hover{
+transform:scale(1.12);
+}
+
+.modal-card h2{
+margin:12px 0 6px;
+padding-right:70px;
+font-size:1.8rem;
+color:#3f3023;
+}
+
+#modalDate{
+display:block;
+font-size:12px;
+color:#7a5c45;
+margin-bottom:8px;
+}
+
+#modalContent{
+white-space:pre-wrap;
+line-height:1.7;
+margin:16px 0;
+color:#4b3b2a;
+}
+
+.modal-bottom-actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.modal-bottom-actions button{
+width:auto;
+}
+
+.dark-mode{
+background:#2a221f;
+background-image:
+linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/black-paper.png");
+background-size:100% 34px, auto;
+color:#f8efe4;
+}
+
+.dark-mode .card,
+.dark-mode .summary-card,
+.dark-mode .auth-card{
+background:#3b322d;
+background-image:
+linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/black-paper.png");
+background-size:100% 30px, auto;
+border-color:rgba(255,255,255,0.08);
+box-shadow:0 12px 24px rgba(0,0,0,0.35);
+}
+
+.dark-mode .sidebar{
+background:#3b322d;
+background-image:
+linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+url("https://www.transparenttextures.com/patterns/black-paper.png");
+background-size:100% 30px, auto;
+box-shadow:12px 0 25px rgba(0,0,0,0.45);
+}
+
+.dark-mode .modal-card{
+color:#4b3b2a;
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 12px 24px rgba(0,0,0,0.35);
+}
+
+.dark-mode .modal-card h2,
+.dark-mode #modalContent,
+.dark-mode #modalDate,
+.dark-mode .modal-heart,
+.dark-mode .modal-close{
+color:#4b3b2a;
+}
+
+.dark-mode .modal-bottom-actions button{
+background:#4b3b2a;
+color:white;
+}
+
+.dark-mode .logo,
+.dark-mode .tagline,
+.dark-mode .title,
+.dark-mode .subtitle,
+.dark-mode .card h2,
+.dark-mode .summary-card h2,
+.dark-mode .sidebar h2{
+color:#f8efe4;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode .suggestions{
+background:#2d2622;
+color:#f8efe4;
+box-shadow:inset 0 2px 5px rgba(0,0,0,0.25);
+}
+
+.dark-mode .summary-row{
+border-bottom-color:rgba(248,239,228,0.22);
+}
+
+.dark-mode .summary-row strong{
+background:#2d2622;
+color:#f8efe4;
+}
+
+.dark-mode .category-badge{
+background:#2d2622;
+color:#f8efe4;
+}
+
+.dark-mode .modal-card .category-badge{
+background:#4b3b2a;
+color:#fff;
+}
+
+.dark-mode .menu-section-btn{
+background:#2d2622;
+color:#f8efe4;
+}
+
+.dark-mode .menu-section-btn:hover{
+background:#564740;
+}
+
+.dark-mode .menu-note-item{
+background:#2d2622;
+color:#f8efe4;
+}
+
+.dark-mode .menu-note-item:hover{
+background:#564740;
+}
+
+.dark-mode .menu-empty,
+.dark-mode .menu-note-item small,
+.dark-mode .suggestion-item small,
+.dark-mode .suggestion-empty,
+.dark-mode .task-item small,
+.dark-mode .empty-message{
+color:#d8cfc3;
+}
+
+.dark-mode .suggestion-item{
+color:#f8efe4;
+border-bottom-color:rgba(248,239,228,0.15);
+}
+
+.dark-mode .suggestion-item:hover{
+background:#564740;
+}
+
+.dark-mode .saved-note{
+background:#4a3d36 !important;
+color:#f8efe4 !important;
+border-color:rgba(255,255,255,0.08);
+}
+
+.dark-mode .saved-note h3,
+.dark-mode .saved-note p,
+.dark-mode .note-date{
+color:#f8efe4 !important;
+}
+
+.dark-mode .mode-toggle{
+background:#111827;
+color:white;
+}
+
+.dark-mode .mode-icon{
+left:162px;
+}
+
+.dark-mode .mode-label{
+padding-left:0;
+padding-right:38px;
+}
+
+.dark-mode .menu-btn{
+background:#3b322d;
+color:#f8efe4;
+}
+
+.dark-mode .menu-btn:hover{
+background:#564740;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@media(max-width:900px){
+.notebook{
+width:100%;
+max-width:calc(100% - 24px);
+margin:18px auto;
+}
+
+.topbar{
+padding:24px 60px 10px;
+}
+
+.logo{
+font-size:2.2rem;
+}
+
+.tagline{
+font-size:1.1rem;
+}
+
+.card,
+.summary-card{
+padding:24px 18px 20px;
+}
+
+.menu-btn{
+top:16px;
+left:14px;
+width:44px;
+height:44px;
+font-size:22px;
+}
+}
+
+@media(max-width:600px){
+.topbar{
+padding:22px 58px 8px;
+}
+
+.logo{
+font-size:1.8rem;
+}
+
+.tagline{
+font-size:1rem;
+}
+
+.mode-toggle{
+width:175px;
+height:48px;
+}
+
+.mode-icon{
+width:38px;
+height:38px;
+top:5px;
+left:5px;
+}
+
+.dark-mode .mode-icon{
+left:132px;
+}
+
+.mode-label{
+font-size:12px;
+padding-left:34px;
+}
+
+.dark-mode .mode-label{
+padding-left:0;
+padding-right:34px;
+}
+
+.card h2{
+font-size:1.45rem;
+}
+
+.summary-card h2{
+font-size:1.15rem;
+}
+
+.summary-row{
+font-size:14px;
+}
+
+input,
+textarea,
+select{
+font-size:14px;
+padding:13px;
+}
+
+#saveNoteBtn,
+#addTaskBtn{
+width:100%;
+margin-top:18px;
+}
+
+.sidebar{
+width:275px;
+left:-285px;
+}
+
+.show-sidebar{
+left:0;
+}
+
+.modal-card{
+width:100%;
+max-height:82vh;
+padding:34px 18px 22px;
+}
+
+.modal-card h2{
+font-size:1.45rem;
+}
+
+.modal-bottom-actions button{
+flex:1;
+}
+}
