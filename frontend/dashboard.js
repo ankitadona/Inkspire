@@ -1,6 +1,6 @@
 async function checkUserAuthentication() {
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/user", {
+    const res = await fetch(`${API_URL}/api/auth/user`, {
       credentials: "include",
     });
 
@@ -28,7 +28,7 @@ checkUserAuthentication();
 
 async function loadNotes() {
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/notes", {
+    const res = await fetch(`${API_URL}/api/notes`, {
       credentials: "include",
     });
 
@@ -53,7 +53,7 @@ async function loadTasks() {
 
   try {
 
-    const res = await fetch("http://127.0.0.1:3000/api/tasks", {
+    const res = await fetch(`${API_URL}/api/tasks`, {
       credentials: "include"
     });
 
@@ -189,7 +189,7 @@ pinMenuBtn.addEventListener("click", function () {
 
 logoutBtn.addEventListener("click", async function () {
   if (confirm("Logout from Inkspire?")) {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/logout", {
+    const res = await fetch(`${API_URL}api/auth/logout`, {
       method: "POST",
       credentials: "include",
     });
@@ -334,7 +334,7 @@ saveNoteBtn.addEventListener("click", async function () {
   }
 
   if (editingNoteId !== null) {
-    await fetch(`http://127.0.0.1:3000/api/notes/${editingNoteId}`, {
+    await fetch(`${API_URL}/api/notes/${editingNoteId}`, {
       method: "PUT",
       credentials: "include",
       headers: {
@@ -353,7 +353,7 @@ saveNoteBtn.addEventListener("click", async function () {
 
     await loadNotes();
   } else {
-    const res = await fetch("http://127.0.0.1:3000/api/notes", {
+    const res = await fetch(`${API_URL}/api/notes`, {
       method: "POST",
 
       credentials: "include",
@@ -490,7 +490,7 @@ modalHeartBtn.addEventListener("click", async function () {
   if (!note) return;
 
   await fetch(
-    `http://127.0.0.1:3000/api/notes/${note._id}`,
+    `${API_URL}/api/notes/${note._id}`,
 
     {
       method: "PUT",
@@ -521,7 +521,7 @@ modalPinBtn.addEventListener("click", async function () {
 
   if (!note) return;
 
-  await fetch(`http://127.0.0.1:3000/api/notes/${note._id}`, {
+  await fetch(`${API_URL}/api/notes/${note._id}`, {
     method: "PUT",
     credentials: "include",
     headers: {
@@ -575,7 +575,7 @@ modalDeleteBtn.addEventListener("click", async function () {
   if (!confirm("Delete this note?")) return;
 
   await fetch(
-    `http://127.0.0.1:3000/api/notes/${activeModalNoteId}`,
+    `${API_URL}/api/notes/${activeModalNoteId}`,
 
     {
       method: "DELETE",
@@ -600,7 +600,7 @@ addTaskBtn.addEventListener("click", async function () {
   if (editingTaskId) {
 
     // UPDATE EXISTING TASK
-    await fetch(`http://127.0.0.1:3000/api/tasks/${editingTaskId}`, {
+    await fetch(`${API_URL}/api/tasks/${editingTaskId}`, {
       method: "PUT",
       credentials: "include",
       headers: {
@@ -618,7 +618,7 @@ addTaskBtn.addEventListener("click", async function () {
   } else {
 
     // CREATE NEW TASK
-    await fetch("http://127.0.0.1:3000/api/tasks", {
+    await fetch(`${API_URL}/api/tasks`, {
       method: "POST",
       credentials: "include",
       headers: {
@@ -676,7 +676,7 @@ function renderTasks() {
     deleteBtn.innerText = "Delete";
 
     checkbox.addEventListener("change", async function () {
-      await fetch(`http://127.0.0.1:3000/api/tasks/${task._id}`, {
+      await fetch(`${API_URL}/api/tasks/${task._id}`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -704,7 +704,7 @@ function renderTasks() {
 
     deleteBtn.addEventListener("click", async function () {
 
-      await fetch(`http://127.0.0.1:3000/api/tasks/${task._id}`, {
+      await fetch(`${API_URL}/api/tasks/${task._id}`, {
         method: "DELETE",
         credentials: "include"
       });
