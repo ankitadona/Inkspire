@@ -1,3 +1,13 @@
+
+
+@font-face{
+    font-family:"Comic Neue";
+    src:url("./fonts/ComicNeue-Bold.ttf") format("truetype");
+    font-weight: 900;
+    font-style:normal;
+    font-display:swap;
+}
+
 *{
 box-sizing:border-box;
 }
@@ -83,6 +93,8 @@ animation:fadeIn 0.6s ease;
 .title,
 .logo{
 font-family:"Comic Neue","Comic Sans MS","Comic Sans",cursive;
+
+
 color:#4b3b2a;
 margin:0;
 }
