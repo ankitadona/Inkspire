@@ -600,17 +600,21 @@ addTaskBtn.addEventListener("click", async function () {
   if (editingTaskId) {
 
     // UPDATE EXISTING TASK
-    await fetch(`${API_URL}/api/tasks/${editingTaskId}`, {
-      method: "PUT",
-      credentials: "include",
-      headers: {
+    const reminder = taskTime.value
+    ? new Date(taskTime.value).toISOString()
+    : null;
+
+await fetch(`${API_URL}/api/tasks/${editingTaskId}`, {
+    method: "PUT",
+    credentials: "include",
+    headers: {
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    },
+    body: JSON.stringify({
         text: taskText,
-        reminder: taskTime.value
-      })
-    });
+        reminder
+    })
+});
 
     editingTaskId = null;
     addTaskBtn.innerText = "Add Task";
@@ -618,17 +622,21 @@ addTaskBtn.addEventListener("click", async function () {
   } else {
 
     // CREATE NEW TASK
-    await fetch(`${API_URL}/api/tasks`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
+    const reminder = taskTime.value
+    ? new Date(taskTime.value).toISOString()
+    : null;
+
+await fetch(`${API_URL}/api/tasks`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
         "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
+    },
+    body: JSON.stringify({
         text: taskText,
-        reminder: taskTime.value
-      })
-    });
+        reminder
+    })
+});
 
   }
 
@@ -694,8 +702,8 @@ function renderTasks() {
 
       taskInput.value = task.text;
       taskTime.value = task.reminder
-        ? new Date(task.reminder).toISOString().slice(0, 16)
-        : "";
+    ? formatForDateTimeLocal(task.reminder)
+    : "";
 
       editingTaskId = task._id;
 
@@ -739,6 +747,15 @@ function formatReminder(dateTimeValue) {
     minute: "2-digit",
     hour12: true,
   });
+}
+
+function formatForDateTimeLocal(date) {
+    const d = new Date(date);
+    const offset = d.getTimezoneOffset();
+
+    return new Date(d.getTime() - offset * 60000)
+        .toISOString()
+        .slice(0, 16);
 }
 
 /* FINAL RENDER */
