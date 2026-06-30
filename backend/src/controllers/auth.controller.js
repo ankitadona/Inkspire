@@ -42,9 +42,9 @@ async function registerUser(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
     res.status(201).json({ message: "User Registered Successfully" });
@@ -77,10 +77,9 @@ async function login(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
     return res.status(200).json({
@@ -93,7 +92,12 @@ async function login(req, res) {
 
 async function logout(req, res) {
   try {
-    res.clearCookie("token");
+    res.clearCookie("token",{
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
+    });
+    
     res.status(200).json({ message: "Logout Successful" });
   } catch (err) {
     res.status(500).json({ message: "Internal Server Error" });
