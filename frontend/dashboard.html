@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inkspire dashboard</title>
+
+    
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+
+<body>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <h2>Checking Login, Please Wait...</h2>
+    </div>
+
+
+    <div class="dashboard" style="display: none;">
+        <button id="menuBtn" class="menu-btn">☰</button>
+
+        <aside id="sidebar" class="sidebar">
+            <div>
+                <h2>Inkspire</h2>
+
+                
+
+                <button class="menu-section-btn" id="allMenuBtn">All Notes ▼</button>
+                <div class="menu-list" id="allNotesMenu"></div>
+
+                <button class="menu-section-btn" id="favMenuBtn">Favourite Notes ▼</button>
+                <div class="menu-list" id="favNotesMenu"></div>
+
+                <button class="menu-section-btn" id="pinMenuBtn">Pinned Notes ▼</button>
+                <div class="menu-list" id="pinNotesMenu"></div>
+            </div>
+
+            <button id="logoutBtn" class="sidebar-logout">Logout</button>
+        </aside>
+
+        <div id="overlay" class="overlay"></div>
+
+        <header class="topbar">
+            <h1 class="logo">Inkspire 📖</h1>
+            <p class="tagline">ink your thoughts, color your memories</p>
+            <h3 id="userName"></h3>
+            <button id="darkModeBtn" class="mode-toggle">
+                <span class="mode-label">DAY MODE</span>
+                <span class="mode-icon">☀️</span>
+            </button>
+        </header>
+
+        <main class="notebook">
+
+            <section class="summary-card">
+                <h2>📊 Dashboard Summary</h2>
+
+                <div class="summary-row">
+                    <span>📝 Notes</span>
+                    <strong id="totalNotesCount">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>✅ Tasks</span>
+                    <strong id="totalTasksCount">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>❤️ Favourite</span>
+                    <strong id="favoriteCount">0</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>📌 Pinned</span>
+                    <strong id="pinnedCount">0</strong>
+                </div>
+            </section>
+
+            <section class="card search-card">
+                <h2>Search Notes</h2>
+                <input id="searchInput" type="text" placeholder="search notes..." spellcheck="false">
+                <div id="searchSuggestions" class="suggestions"></div>
+            </section>
+
+            <!-- Note Editor -->
+            <section class="card" id="notesEditor">
+                <h2>Notes</h2>
+
+                <select id="categoryFilter">
+                    <option value="Study">📚 Study</option>
+                    <option value="Personal">🏠 Personal</option>
+                    <option value="Work">💼 Work</option>
+                    <option value="Ideas">💡 Ideas</option>
+                </select>
+
+                <input id="noteTitle" type="text" placeholder="Note title..." spellcheck="false">
+
+                <textarea id="noteInput" placeholder="Write your thoughts..." spellcheck="false"></textarea>
+
+                <div class="color-options">
+                    <button class="color-btn yellow" data-color="#fff6c7"></button>
+                    <button class="color-btn pink" data-color="#ffd6e8"></button>
+                    <button class="color-btn blue" data-color="#d6ecff"></button>
+                    <button class="color-btn green" data-color="#dcffd6"></button>
+                    <button class="color-btn purple" data-color="#eadcff"></button>
+                </div>
+
+                <button id="saveNoteBtn">Save Note</button>
+            </section>
+
+            
+
+            <section class="card">
+                <h2>Tasks</h2>
+
+                <input id="taskInput" type="text" placeholder="add task..." spellcheck="false">
+
+                <input id="taskTime" type="datetime-local">
+
+                <button id="addTaskBtn">add task</button>
+
+                <div id="taskContainer"></div>
+            </section>
+
+        </main>
+
+        <div id="noteModal" class="note-modal">
+            <div class="modal-card">
+                <div class="modal-actions-top">
+                    <button id="modalHeartBtn" class="modal-heart">🤍</button>
+                    <button id="closeModalBtn" class="modal-close">×</button>
+                </div>
+
+                <h2 id="modalTitle"></h2>
+                <small id="modalDate"></small>
+                <span id="modalCategory" class="category-badge"></span>
+                <p id="modalContent"></p>
+
+                <div class="modal-bottom-actions">
+                    <button id="modalPinBtn">Pin</button>
+                    <button id="modalEditBtn">Edit</button>
+                    <button id="modalDeleteBtn">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="config.js"></script>
+    <script src="dashboard.js"></script>
+    
+</body>
+
+</html>
